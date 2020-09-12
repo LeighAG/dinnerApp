@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 
 mongoose.connect(
-    process.env.MONGODB_CONNECTION_STRING || 'mongodb://localhost:27017/myLocalDb',
+    process.env.MONGODB_CONNECTION_STRING,
     {dbName: 'user',
     useNewUrlParser: true, 
     useUnifiedTopology: true,
