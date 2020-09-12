@@ -29,12 +29,12 @@ mongoose.connect(
 app.use("/users", require("./routes/userRouter"));
 app.use("/dinners", require("./routes/dinnerRouter"));
 
- if(process.env.NODE_ENV === 'production'|| process.env.NODE_ENV === 'staging'){
+//  if(process.env.NODE_ENV === 'production'|| process.env.NODE_ENV === 'staging'){
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get("*", function(req, res){
 res.sendFile(path.join(__dirname + 'client/build/index.html'));  
 });
- }
+//  }
 
 app.listen(PORT, () => console.log(`the server has begun on ${PORT}`));
