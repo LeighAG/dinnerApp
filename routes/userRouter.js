@@ -102,6 +102,7 @@ router.delete("/delete", auth, async (req, res)=>{
 //to confirm a user is logged in
 router.post("/tokenIsValid", async(req, res) =>
 {
+    console.log('token request')
     try{
         const token = req.header("x-auth-token");
         if (!token) return res.json(false);
