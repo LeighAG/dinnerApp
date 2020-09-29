@@ -35,6 +35,23 @@ res.json(savedDinnerPlan);
     }
 });
 
+//archive edited dinner plan
+
+router.post('/edit-archive', async (req, res)=>{
+  
+    try{
+        const { name: dates, dinners: dinnerPlan, userID:UserID } = req.body;
+        console.log(dates, dinnerPlan, UserID, "labels")
+        const updatePlan = await DinnerPlan.update({UserID:UserID,  dates:dates }, {dates, dinnerPlan, UserID})
+        console.log(dinnerPlan, 'plan')
+        
+     
+res.json("done");
+    }
+    catch(err){
+        res.status(500).json({ error: err.message })
+    }
+});
 //retrive list of dinner dates
 router.get('/lists', async (req, res)=>{
     try{
@@ -82,7 +99,7 @@ router.post('/editNote/:name', async (req,res)=>{
     try{
         const dinnerDate = req.params.name;
         const { text, id, arrayIndex } = req.body;
-        console.log( text, id, arrayIndex)
+     
         const notesUpdate = await DinnerPlan.findOneAndUpdate({dates:dinnerDate, UserID:id
         }, {
             $set : 
